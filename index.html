@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App de Pedido</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Selecciona la Sala</h1>
+        <div class="rooms">
+            <button class="room" onclick="selectRoom(1)">Sala 1</button>
+            <button class="room" onclick="selectRoom(2)">Sala 2</button>
+            <button class="room" onclick="selectRoom(3)">Sala 3</button>
+            <button class="room" onclick="selectRoom(4)">Sala 4</button>
+            <button class="room" onclick="selectRoom(5)">Sala 5</button>
+            <button class="room" onclick="selectRoom(6)">Sala 6</button>
+            <button class="room" onclick="selectRoom(7)">Sala 7</button>
+        </div>
+
+        <div id="orderForm" class="order-form">
+            <h2>Pedido de Sala <span id="roomNumber">?</span></h2>
+            <label for="coffeeQuantity">¿Cuántos cafés deseas?</label>
+            <input type="number" id="coffeeQuantity" min="1" value="1">
+            <br>
+            <button onclick="submitOrder()">Enviar Pedido</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
