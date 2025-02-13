@@ -1,33 +1,53 @@
-<!DOCTYPE html>
+<!<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App de Pedido</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Enviar mensaje WhatsApp</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Selecciona la Sala</h1>
-        <div class="rooms">
-            <button class="room" onclick="selectRoom(1)">Sala 1</button>
-            <button class="room" onclick="selectRoom(2)">Sala 2</button>
-            <button class="room" onclick="selectRoom(3)">Sala 3</button>
-            <button class="room" onclick="selectRoom(4)">Sala 4</button>
-            <button class="room" onclick="selectRoom(5)">Sala 5</button>
-            <button class="room" onclick="selectRoom(6)">Sala 6</button>
-            <button class="room" onclick="selectRoom(7)">Sala 7</button>
-        </div>
+    <h1>Enviar mensaje a WhatsApp</h1>
+    <form id="sendMessageForm">
+        <label for="phoneNumber1">Número de Teléfono 1:</label>
+        <input type="text" id="phoneNumber1" placeholder="Ej. 11234567890" required>
+        <br>
+        <label for="phoneNumber2">Número de Teléfono 2:</label>
+        <input type="text" id="phoneNumber2" placeholder="Ej. 19876543210" required>
+        <br>
+        <label for="message">Mensaje:</label>
+        <textarea id="message" placeholder="Escribe tu mensaje aquí" required></textarea>
+        <br>
+        <button type="submit">Enviar</button>
+    </form>
 
-        <div id="orderForm" class="order-form">
-            <h2>Pedido de Sala <span id="roomNumber">?</span></h2>
-            <label for="coffeeQuantity">¿Cuántos cafés deseas?</label>
-            <input type="number" id="coffeeQuantity" min="1" value="1">
-            <br>
-            <button onclick="submitOrder()">Enviar Pedido</button>
-        </div>
-    </div>
+    <script>
+        document.getElementById('sendMessageForm').addEventListener('submit', function(event) {
+            event.preventDefault();
 
-    <script src="script.js"></script>
+            const phoneNumber1 = document.getElementById('phoneNumber1').value;
+            const phoneNumber2 = document.getElementById('phoneNumber2').value;
+            const message = document.getElementById('message').value;
+
+            // Validar que los campos no estén vacíos
+            if (!phoneNumber1 || !phoneNumber2 || !message) {
+                alert('Por favor, completa todos los campos.');
+                return;
+            }
+
+            // Crear los enlaces para WhatsApp con el mensaje
+            const whatsappUrl1 = `https://wa.me/${phoneNumber1}?text=${encodeURIComponent(message)}`;
+            const whatsappUrl2 = `https://wa.me/${phoneNumber2}?text=${encodeURIComponent(message)}`;
+
+            // Intentar abrir ambos enlaces en nuevas pestañas o ventanas
+            const openLink1 = window.open(whatsappUrl1, '_blank');
+            const openLink2 = window.open(whatsappUrl2, '_blank');
+
+            // Comprobar si las ventanas fueron bloqueadas
+            if (!openLink1 || !openLink2) {
+                alert('Tu navegador bloqueó las ventanas emergentes. Por favor, permite las ventanas emergentes e inténtalo de nuevo.');
+            }
+        });
+    </script>
 </body>
 </html>
+
